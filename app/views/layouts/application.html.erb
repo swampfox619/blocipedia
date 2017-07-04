@@ -13,7 +13,12 @@
       <div class="navbar">
           <ul class="nav">
             <li><%= link_to "Home", root_path %></li>
-            <li class="pull-right"><%= link_to "Sign In", new_user_session_path %></li>
+            <% if current_user %>
+              <li class="pull-right"><%= link_to "Log Out", destroy_session_path(current_user), method: :delete %></li>
+              <li class="pull-right"><%= link_to "Edit Password", edit_user_registration_path(current_user)%></li>
+            <% else %>
+              <li class="pull-right"><%= link_to "Sign In", new_user_session_path %></li>
+            <% end %>
           </ul>
       </div>
       <p class="notice"><%= notice %></p>

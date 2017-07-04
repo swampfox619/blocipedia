@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
   
   def send_confirmation_instructions
     ConfirmationMailer.confirmation_instructions(user).deliver_now
+  end
 end

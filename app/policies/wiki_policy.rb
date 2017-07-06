@@ -30,7 +30,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user.admin? || @user.id = @wiki.user_id
+    @user.admin? || @user == @wiki.user
   end
 
 end

@@ -2,10 +2,14 @@
 <div class="row">
     <div class="col-md-8">
         <p><%= @wiki.body %></p>
+        <strong><p><%= "Author: #{@wiki.user.email}" %></p></strong>
+        <strong><p><%= "Created: #{time_ago_in_words(@wiki.created_at)} ago" %></p></strong>
     </div>
     <div class="col-md-4">
         <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
-        <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger' %>
+        <% if current_user.admin? || current_user.id = @wiki.user_id %>
+            <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger' %>
+        <% end %>
     </div>
 </div>    
     

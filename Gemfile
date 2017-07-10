@@ -18,10 +18,12 @@
  gem 'coffee-rails', '~> 4.1.0'
  gem 'jquery-rails'
  gem 'turbolinks'
- gem 'bootstrap'
+ gem 'bootstrap-sass'
  gem 'figaro'
  gem 'devise'
+ gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby'
  gem 'pundit'
+ gem 'stripe', '~>1.55'
  
  group :development, :test do
    gem 'byebug'

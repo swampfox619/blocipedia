@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :wikis
-
+  resource :subscription
   devise_for :users
   root 'welcome#index'
 

@@ -22,6 +22,7 @@ before_action :authenticate_user!, except: :index
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
     @wiki.user_id = current_user.id
+    @wiki.private = params[:wiki][:body]
     authorize @wiki
     
     if @wiki.save

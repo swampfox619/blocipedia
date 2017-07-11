@@ -22,7 +22,7 @@ before_action :authenticate_user!, except: :index
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
     @wiki.user_id = current_user.id
-    @wiki.private = params[:wiki][:body]
+    @wiki.private = params[:wiki][:private]
     authorize @wiki
     
     if @wiki.save
@@ -43,7 +43,7 @@ before_action :authenticate_user!, except: :index
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
-    
+    @wiki.private = params[:wiki][:private]
     if @wiki.save
       flash[:notice] = "Wiki was updated"
       redirect_to @wiki

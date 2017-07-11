@@ -22,6 +22,7 @@ class SubscriptionsController < ApplicationController
                 card_exp_month: params[:card_exp_month],
                 card_exp_year: params[:card_exp_year]
                 ) if params[:card_last4]
+            current_user.assign_attributes(role: "premium")
             current_user.save
             
             flash.notice = "Thanks for subscribing!"
@@ -62,11 +63,15 @@ class SubscriptionsController < ApplicationController
     end
     
     def destroy
+        # @wikis = Wiki.all
         customer = current_user.stripe_customer
         subscription = customer.subscriptions.retrieve(current_user.stripe_subscription_id).delete
     
         expires_at = Time.zone.at(subscription.current_period_end)
-        current_user.update(expires_at: expires_at, stripe_subscription_id: nil)
+        current_user.update(expires_at: expires_at, stripe_subscription_id: nil, role: "standard")
+        current_user.wikis.each do |wiki|
+            wiki.update_attribute(:private, false)
+        end
         redirect_to root_path, notice: "You have cancelled your subscription, you will have access until #{current_user.expires_at.to_date}."
     end
 end

@@ -1,7 +1,7 @@
 <h1><%= @wiki.title %></h1>
 <div class="row">
     <div class="col-md-8">
-        <p><%= @wiki.body %></p>
+        <p><%= raw (@wiki.body) %></p>
         <strong><p><%= "Author: #{@wiki.user.email}" %></p></strong>
         <strong><p><%= "Created: #{time_ago_in_words(@wiki.created_at)} ago" %></p></strong>
     </div>

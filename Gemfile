@@ -24,6 +24,7 @@
  gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby'
  gem 'pundit'
  gem 'stripe', '~>1.55'
+ gem 'redcarpet'
  
  group :development, :test do
    gem 'byebug'

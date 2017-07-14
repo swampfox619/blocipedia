@@ -8,7 +8,7 @@
     <div class="col-md-4">
         <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
         <%= link_to "Upgrade Now!", new_subscription_path(plan: "monthly"), class: "btn btn-primary" %>
-        <% if current_user.admin? || current_user == @wiki.user %>
+        <% if current_user.admin? || current_user == @wiki.user || current_user.premium? %>
             <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger' %>
         <% end %>
     </div>

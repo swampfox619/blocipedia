@@ -1,7 +1,4 @@
 <h2><%= "Collaborators on: #{@wiki.title}" %></h2>
-<!--<div class = "row">-->
-<!--Stuff is supposed to be here from Untitled1-->
-<!--</div>-->
 <div class = "row">
     <div class = "col.sm-8">
       	<table class="table">
@@ -9,8 +6,7 @@
     		<thead>
     			<tr>
     				<th>Email</th>
-    				<th>Add Collaborator</th>
-    				<th>Delete Collaborator</th>
+    				<th>Add or Delete a Collaborator</th>
     			</tr>
     		</thead>
     		<tbody>	
@@ -19,8 +15,8 @@
     	            <div class="form-group">
                         <tr>
                             <td> <%= user.email %> </td>
-                            <% if @wiki.collaborators.find(user) == user %>
-                                <td><%= button_to "Remove Collaborator", wiki_collaborator_path(@wiki, @collaborators.where(user_id: user).first), method: :delete, params: {user_id: user.id} %></td>
+                            <% if @wiki.collaborator_ids.include?(user.id) %>
+                                <td><%= button_to "Delete Collaborator", wiki_collaborator_path(@wiki.id, user.id), method: :delete, params: {collaborator_ids: user.id} %></td>
                             <% else %>
                                 <td><%= button_to "Add Collaborator", wiki_collaborators_path(@wiki.id), params: {user_id: user.id} %></td>
                             <% end %>

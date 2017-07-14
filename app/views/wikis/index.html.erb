@@ -2,19 +2,6 @@
 <div class = "row">
     <div class = "col-sm-8">
         <% if current_user %>
-            <% if current_user && current_user.standard? %>
-                <% @wikis.each do |wiki| %>
-                    <% if wiki.private == nil || wiki.private == false %>
-                        <div class="media">
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    <p><%= link_to wiki.title, wiki %></p>
-                                </h4>
-                            </div>
-                        </div>
-                    <% end %>
-                <% end %>
-            <% else %>
                 <% @wikis.each do |wiki| %>
                     <div class="media">
                         <div class="media-body">
@@ -24,7 +11,6 @@
                         </div>
                     </div>
                 <% end %>
-            <% end %>   
         <% else %>
             <h3>Sign up to view our wikis!</h3>
         <% end %>    

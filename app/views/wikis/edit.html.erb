@@ -29,6 +29,7 @@
                 <% end %>
             <div class="form-group">
                 <%= f.submit "Save", class: 'btn btn-success' %>
+                <%= link_to "Show collaborators for this Wiki", wiki_collaborators_path(@wiki), class: 'btn btn-primary' %>
             </div>
             <% end %>
         </div>

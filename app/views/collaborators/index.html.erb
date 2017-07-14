@@ -1,0 +1,34 @@
+<h2><%= "Collaborators on: #{@wiki.title}" %></h2>
+<!--<div class = "row">-->
+<!--Stuff is supposed to be here from Untitled1-->
+<!--</div>-->
+<div class = "row">
+    <div class = "col.sm-8">
+      	<table class="table">
+      	    <h3>Add/Remove Collaborators</h3>
+    		<thead>
+    			<tr>
+    				<th>Email</th>
+    				<th>Add Collaborator</th>
+    				<th>Delete Collaborator</th>
+    			</tr>
+    		</thead>
+    		<tbody>	
+    			<div class="field">
+    	           <% @users.each do |user| %>
+    	            <div class="form-group">
+                        <tr>
+                            <td> <%= user.email %> </td>
+                            <% if @wiki.collaborators.find(user) == user %>
+                                <td><%= button_to "Remove Collaborator", wiki_collaborator_path(@wiki, @collaborators.where(user_id: user).first), method: :delete, params: {user_id: user.id} %></td>
+                            <% else %>
+                                <td><%= button_to "Add Collaborator", wiki_collaborators_path(@wiki.id), params: {user_id: user.id} %></td>
+                            <% end %>
+                        </tr>
+    	    	    </div>
+    			</div> 
+    	        <% end %>
+    		</tbody>
+    	</table> 
+    </div>
+</div>                

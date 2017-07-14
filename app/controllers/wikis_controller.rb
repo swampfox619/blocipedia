@@ -4,7 +4,7 @@ before_action :authenticate_user!, except: :index
 
 
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 
   def show

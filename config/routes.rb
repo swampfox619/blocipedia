@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   
-  resources :wikis
+  resources :wikis do
+    resources :collaborators
+  end
+  
   resource :subscription
   devise_for :users
   root 'welcome#index'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
